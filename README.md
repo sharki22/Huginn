@@ -1,8 +1,10 @@
 <div align="center">
+  <!-- Положите первую картинку в папку assets/ и назовите её logo.png -->
+  <img src="assets/logo.png" alt="Huginn Logo" width="220">
+  <br>
+  <img src="https://img.shields.io/badge/Huginn-AI%20Blocker-red?style=for-the-badge&logo=robot&logoColor=white" alt="Huginn">
 
-<img src="https://img.shields.io/badge/AI-Blocker-red?style=for-the-badge&logo=robot&logoColor=white" alt="AI Blocker">
-
-# 🛡️ AI Blocker
+# 🛡️ Huginn
 
 **No more AI distractions. Period.**
 
@@ -38,7 +40,7 @@ Kills local AI processes & blocks AI websites straight from your system tray.
 Desktop notification when something gets axed:
 
 ```
-🚫 AI Blocker — Blocked: ollama (PID 12345)
+🚫 Huginn — Blocked: ollama (PID 12345)
 ```
 
 ## 🚀 Quick start
@@ -52,7 +54,7 @@ Or manually:
 
 ```bash
 poetry install
-sudo poetry run ai-blocker    # needs sudo for /etc/hosts
+sudo poetry run huginn    # needs sudo for /etc/hosts
 ```
 
 > ⚠️ `sudo` is required — the tool modifies `/etc/hosts` to block AI domains.
@@ -113,7 +115,7 @@ poetry run pytest tests/ -v
 
 ```
 ┌──────────────────────────────────────────────────┐
-│               AI Blocker (system tray)            │
+│                 Huginn (system tray)              │
 ├────────────────────┬─────────────────────────────┤
 │    HostsBlocker    │      ProcessMonitor          │
 │                    │                              │
@@ -132,7 +134,7 @@ poetry run pytest tests/ -v
 
 ```
 Huginn/
-├── ai_blocker/
+├── huginn/
 │   ├── __init__.py
 │   ├── app.py          # tray icon + main loop
 │   ├── config.py       # domains, processes, settings
@@ -154,10 +156,10 @@ Huginn/
 
 ```bash
 # remove autostart
-rm ~/.config/autostart/ai-blocker.desktop
+rm ~/.config/autostart/huginn.desktop
 
 # restore /etc/hosts (if didn't quit cleanly)
-sudo sed -i '/# === AI Blocker ===/,/# === AI Blocker ===/d' /etc/hosts
+sudo sed -i '/# === Huginn ===/,/# === Huginn ===/d' /etc/hosts
 
 # nuke the project
 rm -rf /path/to/Huginn

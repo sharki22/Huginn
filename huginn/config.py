@@ -1,7 +1,7 @@
 from pathlib import Path
 
 HOSTS_PATH = Path("/etc/hosts")
-HOSTS_MARKER = "# === AI Blocker ==="
+HOSTS_MARKER = "# === Huginn ==="
 
 MONITOR_INTERVAL = 5
 

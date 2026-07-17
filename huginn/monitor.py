@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import psutil
 
-from ai_blocker.config import AI_PROCESS_CMDLINE, AI_PROCESS_NAMES
+from huginn.config import AI_PROCESS_CMDLINE, AI_PROCESS_NAMES
 
 logger = logging.getLogger(__name__)
 
@@ -70,7 +70,7 @@ class ProcessMonitor:
         names = ", ".join(f"{p.name} (PID {p.pid})" for p in processes)
         try:
             subprocess.run(
-                ["notify-send", "-u", "critical", "AI Blocker", f"Blocked: {names}"],
+                ["notify-send", "-u", "critical", "Huginn", f"Blocked: {names}"],
                 timeout=5,
                 check=False,
             )

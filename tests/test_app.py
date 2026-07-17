@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 from PIL import Image
 
-from ai_blocker.app import _icon_image, AIBlockerApp
+from huginn.app import _icon_image, HuginnApp
 
 
 class TestIconImage:
@@ -41,22 +41,22 @@ class TestIconImage:
         assert 80 < center[0] < 120
 
 
-class TestAIBlockerApp:
+class TestHuginnApp:
     def test_init_creates_components(self):
-        app = AIBlockerApp()
+        app = HuginnApp()
         assert app._monitoring is True
         assert app._stop is not None
         assert app._hosts is not None
         assert app._monitor is not None
 
     def test_menu_structure(self):
-        app = AIBlockerApp()
+        app = HuginnApp()
         menu = app._menu()
         items = list(menu)
         assert len(items) >= 5
 
     def test_toggle_changes_state(self):
-        app = AIBlockerApp()
+        app = HuginnApp()
         assert app._monitoring is True
         mock_icon = MagicMock()
         app._toggle(mock_icon, None)

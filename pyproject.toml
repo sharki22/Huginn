@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "ai-blocker"
+name = "huginn"
 version = "0.1.0"
 description = "Lightweight AI blocker - blocks AI websites and kills local AI processes"
 authors = ["Kyrie"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "ai_blocker"}]
+packages = [{include = "huginn"}]
 
 [tool.poetry.scripts]
-ai-blocker = "ai_blocker.main:main"
+huginn = "huginn.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"

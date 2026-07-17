@@ -1,6 +1,6 @@
 import logging
 
-from ai_blocker.config import AI_DOMAINS, HOSTS_MARKER, HOSTS_PATH
+from huginn.config import AI_DOMAINS, HOSTS_MARKER, HOSTS_PATH
 
 logger = logging.getLogger(__name__)
 

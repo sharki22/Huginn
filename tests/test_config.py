@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from ai_blocker.config import (
+from huginn.config import (
     AI_DOMAINS,
     AI_PROCESS_CMDLINE,
     AI_PROCESS_NAMES,

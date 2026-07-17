@@ -4,9 +4,9 @@ import threading
 import pystray
 from PIL import Image, ImageDraw
 
-from ai_blocker.config import MONITOR_INTERVAL
-from ai_blocker.hosts import HostsBlocker
-from ai_blocker.monitor import ProcessMonitor
+from huginn.config import MONITOR_INTERVAL
+from huginn.hosts import HostsBlocker
+from huginn.monitor import ProcessMonitor
 
 logger = logging.getLogger(__name__)
 
@@ -16,12 +16,12 @@ def _icon_image(active: bool = False) -> Image.Image:
     draw = ImageDraw.Draw(img)
     fill = (220, 50, 50, 255) if active else (100, 100, 100, 255)
     draw.rounded_rectangle([4, 4, 60, 60], radius=8, fill=fill)
-    draw.text((14, 12), "AI", fill="white")
+    draw.text((14, 12), "HI", fill="white")
     draw.text((12, 34), "OFF" if active else "ON", fill="white")
     return img
 
 
-class AIBlockerApp:
+class HuginnApp:
     def __init__(self) -> None:
         self._hosts = HostsBlocker()
         self._monitor = ProcessMonitor()
@@ -79,6 +79,6 @@ class AIBlockerApp:
         threading.Thread(target=self._loop, daemon=True).start()
 
         self._icon = pystray.Icon(
-            "ai-blocker", icon=_icon_image(), title="AI Blocker", menu=self._menu()
+            "huginn", icon=_icon_image(), title="Huginn", menu=self._menu()
         )
         self._icon.run()

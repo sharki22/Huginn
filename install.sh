@@ -3,9 +3,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 AUTOSTART_DIR="$HOME/.config/autostart"
-AUTOSTART_FILE="$AUTOSTART_DIR/ai-blocker.desktop"
+AUTOSTART_FILE="$AUTOSTART_DIR/huginn.desktop"
 
-echo "=== AI Blocker Installer ==="
+echo "=== Huginn Installer ==="
 
 if ! command -v python3 &>/dev/null; then
     echo "ERROR: python3 not found" >&2
@@ -29,9 +29,9 @@ if [[ "$choice" =~ ^[Yy]$ ]]; then
     cat > "$AUTOSTART_FILE" <<EOF
 [Desktop Entry]
 Type=Application
-Name=AI Blocker
+Name=Huginn
 Comment=Blocks AI websites and local AI processes
-Exec=cd $SCRIPT_DIR && poetry run ai-blocker
+Exec=cd $SCRIPT_DIR && poetry run huginn
 Icon=application-exit
 Terminal=false
 StartupNotify=false
@@ -42,4 +42,4 @@ fi
 
 echo ""
 echo "=== Installed ==="
-echo "Run:  sudo poetry run ai-blocker"
+echo "Run:  sudo poetry run huginn"

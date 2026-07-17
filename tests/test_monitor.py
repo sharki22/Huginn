@@ -2,8 +2,8 @@ from unittest.mock import MagicMock, patch
 
 import psutil
 
-from ai_blocker.monitor import KilledProcess, ProcessMonitor
-from ai_blocker.config import AI_PROCESS_NAMES, AI_PROCESS_CMDLINE
+from huginn.monitor import KilledProcess, ProcessMonitor
+from huginn.config import AI_PROCESS_NAMES, AI_PROCESS_CMDLINE
 
 
 class TestKilledProcess:
@@ -76,7 +76,7 @@ class TestScanAndKill:
     def setup_method(self):
         self.monitor = ProcessMonitor()
 
-    @patch("ai_blocker.monitor.psutil.process_iter")
+    @patch("huginn.monitor.psutil.process_iter")
     def test_kills_ai_process(self, mock_iter):
         proc = MagicMock()
         proc.name.return_value = "ollama"
@@ -90,7 +90,7 @@ class TestScanAndKill:
         assert killed[0].pid == 1234
         proc.terminate.assert_called_once()
 
-    @patch("ai_blocker.monitor.psutil.process_iter")
+    @patch("huginn.monitor.psutil.process_iter")
     def test_skips_non_ai_process(self, mock_iter):
         proc = MagicMock()
         proc.name.return_value = "firefox"
@@ -102,7 +102,7 @@ class TestScanAndKill:
         assert len(killed) == 0
         proc.terminate.assert_not_called()
 
-    @patch("ai_blocker.monitor.psutil.process_iter")
+    @patch("huginn.monitor.psutil.process_iter")
     def test_increments_total_killed(self, mock_iter):
         proc = MagicMock()
         proc.name.return_value = "llama.cpp"
@@ -113,7 +113,7 @@ class TestScanAndKill:
         self.monitor.scan_and_kill()
         assert self.monitor.total_killed == 1
 
-    @patch("ai_blocker.monitor.psutil.process_iter")
+    @patch("huginn.monitor.psutil.process_iter")
     def test_calls_kill_on_timeout(self, mock_iter):
         proc = MagicMock()
         proc.name.return_value = "comfyui"
@@ -125,7 +125,7 @@ class TestScanAndKill:
         self.monitor.scan_and_kill()
         proc.kill.assert_called_once()
 
-    @patch("ai_blocker.monitor.psutil.process_iter")
+    @patch("huginn.monitor.psutil.process_iter")
     def test_handles_nosuchprocess_during_kill(self, mock_iter):
         proc = MagicMock()
         proc.name.return_value = "ollama"
@@ -139,7 +139,7 @@ class TestScanAndKill:
 
 
 class TestNotify:
-    @patch("ai_blocker.monitor.subprocess.run")
+    @patch("huginn.monitor.subprocess.run")
     def test_sends_notification(self, mock_run):
         processes = [KilledProcess("ollama", 123, "ollama serve")]
         ProcessMonitor.notify(processes)
@@ -148,12 +148,12 @@ class TestNotify:
         assert "notify-send" in args
         assert "ollama" in args[-1]
 
-    @patch("ai_blocker.monitor.subprocess.run")
+    @patch("huginn.monitor.subprocess.run")
     def test_empty_list_does_nothing(self, mock_run):
         ProcessMonitor.notify([])
         mock_run.assert_not_called()
 
-    @patch("ai_blocker.monitor.subprocess.run", side_effect=FileNotFoundError)
+    @patch("huginn.monitor.subprocess.run", side_effect=FileNotFoundError)
     def test_handles_missing_notify_send(self, _):
         processes = [KilledProcess("ollama", 123, "ollama serve")]
         ProcessMonitor.notify(processes)

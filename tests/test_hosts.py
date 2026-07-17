@@ -1,7 +1,7 @@
 import pytest
 
-from ai_blocker.hosts import HostsBlocker
-from ai_blocker.config import AI_DOMAINS, HOSTS_MARKER
+from huginn.hosts import HostsBlocker
+from huginn.config import AI_DOMAINS, HOSTS_MARKER
 
 
 @pytest.fixture
@@ -12,7 +12,7 @@ def hosts_file(tmp_path):
 @pytest.fixture
 def blocker(hosts_file, monkeypatch):
     hosts_file.write_text("127.0.0.1 localhost\n")
-    monkeypatch.setattr("ai_blocker.hosts.HOSTS_PATH", hosts_file)
+    monkeypatch.setattr("huginn.hosts.HOSTS_PATH", hosts_file)
     return HostsBlocker()
 
 
@@ -20,7 +20,7 @@ def blocker(hosts_file, monkeypatch):
 def blocker_with_block(hosts_file, monkeypatch):
     block = f"{HOSTS_MARKER}\n127.0.0.1 chatgpt.com\n{HOSTS_MARKER}\n"
     hosts_file.write_text(f"127.0.0.1 localhost\n{block}")
-    monkeypatch.setattr("ai_blocker.hosts.HOSTS_PATH", hosts_file)
+    monkeypatch.setattr("huginn.hosts.HOSTS_PATH", hosts_file)
     return HostsBlocker()
 
 
@@ -65,7 +65,7 @@ class TestBlock:
     def test_empty_hosts_returns_zero(self, tmp_path, monkeypatch):
         hosts_file = tmp_path / "hosts"
         hosts_file.write_text("")
-        monkeypatch.setattr("ai_blocker.hosts.HOSTS_PATH", hosts_file)
+        monkeypatch.setattr("huginn.hosts.HOSTS_PATH", hosts_file)
         b = HostsBlocker()
         assert b.block() == 0
 
@@ -91,7 +91,7 @@ class TestUnblock:
 class TestReadPermissionError:
     def test_read_returns_empty(self, tmp_path, monkeypatch):
         hosts_file = tmp_path / "hosts"
-        monkeypatch.setattr("ai_blocker.hosts.HOSTS_PATH", hosts_file)
+        monkeypatch.setattr("huginn.hosts.HOSTS_PATH", hosts_file)
 
         original_read_text = type(hosts_file).read_text
 

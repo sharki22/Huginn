@@ -1,4 +1,4 @@
-# AI Blocker - Roadmap
+# Huginn - Roadmap
 
 ## v0.2 - Browser Extension
 Browser extension (Chrome/Firefox) for real-time AI tab blocking.
