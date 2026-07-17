@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "ai-blocker"
+version = "0.1.0"
+description = "Lightweight AI blocker - blocks AI websites and kills local AI processes"
+authors = ["Kyrie"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "ai_blocker"}]
+
+[tool.poetry.scripts]
+ai-blocker = "ai_blocker.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pystray = "^0.19"
+psutil = "^5.9"
+Pillow = ">=10.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-cov = "^5.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
