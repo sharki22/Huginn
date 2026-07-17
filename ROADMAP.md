@@ -56,6 +56,16 @@ Block AI for all users on the system.
 - Per-user process monitoring
 - Systemd service for root-level process killing
 
+## v0.8 - Cross-Platform Support
+Make the tool work on Linux, macOS, and Windows.
+
+**Features:**
+- Platform-specific hosts file paths (`/etc/hosts`, `C:\Windows\System32\drivers\etc\hosts`)
+- Cross-platform notifications (replace `notify-send` with `plyer` or `notifpy`)
+- Platform-specific autostart mechanisms (XDG on Linux, LaunchAgents on macOS, Registry on Windows)
+- Conditional network-level blocking (nftables/iptables on Linux, pf on macOS, Windows Firewall)
+- Test suite run on all platforms
+
 ## Future Ideas
 - VPN/Proxy detection and blocking
 - AI model detection via file scanning
