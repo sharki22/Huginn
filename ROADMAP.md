@@ -1,18 +1,19 @@
 # Huginn - Roadmap
 
-## v0.2 - Browser Extension
-Browser extension (Chrome/Firefox) for real-time AI tab blocking.
+
+
+
+## v0.2 - Cross-Platform Support
+Make the tool work on Linux, macOS, and Windows.
 
 **Features:**
-- Detect and close AI-related tabs in real time
-- Block navigation to AI domains before page loads
-- Extension popup with kill statistics
-- Sync with main app via WebSocket or local file
+- Platform-specific hosts file paths (`/etc/hosts`, `C:\Windows\System32\drivers\etc\hosts`)
+- Cross-platform notifications (replace `notify-send` with `plyer` or `notifpy`)
+- Platform-specific autostart mechanisms (XDG on Linux, LaunchAgents on macOS, Registry on Windows)
+- Conditional network-level blocking (nftables/iptables on Linux, pf on macOS, Windows Firewall)
+- Test suite run on all platforms
 
-**Files:**
-- `extension/manifest.json`
-- `extension/background.js`
-- `extension/popup.html`
+
 
 ## v0.3 - GUI Whitelist Editor
 Simple GUI for managing whitelist without editing text files.
@@ -56,15 +57,23 @@ Block AI for all users on the system.
 - Per-user process monitoring
 - Systemd service for root-level process killing
 
-## v0.8 - Cross-Platform Support
-Make the tool work on Linux, macOS, and Windows.
+
+
+## v0.8 - Browser Extension
+Browser extension (Chrome/Firefox) for real-time AI tab blocking.
 
 **Features:**
-- Platform-specific hosts file paths (`/etc/hosts`, `C:\Windows\System32\drivers\etc\hosts`)
-- Cross-platform notifications (replace `notify-send` with `plyer` or `notifpy`)
-- Platform-specific autostart mechanisms (XDG on Linux, LaunchAgents on macOS, Registry on Windows)
-- Conditional network-level blocking (nftables/iptables on Linux, pf on macOS, Windows Firewall)
-- Test suite run on all platforms
+- Detect and close AI-related tabs in real time
+- Block navigation to AI domains before page loads
+- Extension popup with kill statistics
+- Sync with main app via WebSocket or local file
+
+**Files:**
+- `extension/manifest.json`
+- `extension/background.js`
+- `extension/popup.html`
+
+
 
 ## Future Ideas
 - VPN/Proxy detection and blocking
