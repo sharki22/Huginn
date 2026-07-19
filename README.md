@@ -1,5 +1,4 @@
 <div align="center">
-  <!-- Положите первую картинку в папку assets/ и назовите её logo.png -->
   <img src="assets/logo.png" alt="Huginn Logo" style="border-radius: 25px; width: 220px;">
   <br>
   <img src="https://img.shields.io/badge/Huginn-AI%20Blocker-red?style=for-the-badge&logo=robot&logoColor=white" alt="Huginn">
